@@ -1,0 +1,12 @@
+---
+- hosts: all
+  become: true
+  roles:
+    - lamp
+  tasks:
+    - file: path=/var/www/html state=absent
+    - file: src=/vagrant/gearman_example/webroot/ dest=/var/www/html owner=vagrant group=vagrant state=link
+    - replace: dest=/etc/apache2/envvars regexp='export APACHE_RUN_USER=www-data' replace='export APACHE_RUN_USER=vagrant' backup=yes
+    - replace: dest=/etc/apache2/envvars regexp='export APACHE_RUN_GROUP=www-data' replace='export APACHE_RUN_GROUP=vagrant' backup=yes
+
+
