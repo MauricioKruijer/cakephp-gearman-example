@@ -1,0 +1,43 @@
+---
+
+- name: "Install gearman packages"
+  apt:
+    pkg: "{{ item }}"
+    state: "present"
+    update_cache: "yes"
+    cache_valid_time: "3600"
+    install_recommends: "no"
+  with_items:
+    - "gearman-job-server"
+    - "gearman-tools"
+  become: "yes"
+
+- name: "Populate gearman defaults"
+  template:
+    src: "etc/default/gearman-job-server"
+    dest: "/etc/default/gearman-job-server"
+    owner: "root"
+    group: "root"
+  notify:
+    - "Restart gearman"
+  become: "yes"
+
+- name: "Install upstart service"
+  template:
+    src: "etc/init/gearman-job-server.conf"
+    dest: "/etc/init/gearman-job-server.conf"
+    owner: "root"
+    group: "root"
+  notify:
+    - "Restart gearman"
+  become: "yes"
+
+- name: "Ensure that gearman is enabled and running"
+  service:
+    name: "gearman-job-server"
+    enabled: "yes"
+    state: "started"
+  become: "yes"
+
+- name: "Flush handlers"
+  meta: flush_handlers

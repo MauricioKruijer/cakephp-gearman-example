@@ -3,6 +3,8 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 
+use CvoTechnologies\Gearman\JobAwareTrait;
+
 /**
  * Articles Controller
  *
@@ -10,6 +12,7 @@ use App\Controller\AppController;
  */
 class ArticlesController extends AppController
 {
+    use JobAwareTrait;
 
     public function initialize()
     {
@@ -34,6 +37,29 @@ class ArticlesController extends AppController
         $article = $this->Articles->newEntity();
         if ($this->request->is('post')) {
             $article = $this->Articles->patchEntity($article, $this->request->data);
+
+            if (!empty($this->request->data)) {
+                if (!empty($this->request->data['upload']['name'])) {
+                    $file = $this->request->data['upload'];
+                    $ext  = substr(strtolower(strrchr($file['name'], '.')), 1);
+                    $arr_ext = array('jpg', 'jpeg', 'gif');
+                    $setNewFileName = time() . "_" . rand(000000, 999999);
+
+                    if (in_array($ext, $arr_ext)) {
+                        move_uploaded_file($file['tmp_name'], WWW_ROOT . '/upload/avatar/' . $setNewFileName . '.' . $ext);
+                        $imageFileName = $setNewFileName . '.' . $ext;
+                        
+                        $this->execute('processImageWorker', ['file' => WWW_ROOT . 'upload/avatar/' . $imageFileName], true);
+                    }
+
+
+                }
+                if (!empty($this->request->data['upload']['name'])) {
+                  $article->filename = $imageFileName;
+                }
+                $this->execute('sleepWorker', ['timeout' => 1], true);
+            }
+
             if ($this->Articles->save($article)) {
                 $this->Flash->success(__('Your article has been saved.'));
                 return $this->redirect(['action' => 'index']);

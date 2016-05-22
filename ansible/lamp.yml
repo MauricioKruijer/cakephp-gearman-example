@@ -3,6 +3,7 @@
   become: true
   roles:
     - lamp
+    - gearman
   tasks:
     - file: path=/var/www/html state=absent
     - file: src=/vagrant/gearman_example/webroot/ dest=/var/www/html owner=vagrant group=vagrant state=link

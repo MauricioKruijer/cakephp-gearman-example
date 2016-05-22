@@ -1,0 +1,8 @@
+---
+
+gearman_bind_address: "0.0.0.0"
+gearman_bind_port: "4730"
+
+# It is recommended to override the following variable and use a reliable queue
+# as memcached, e.g. --queue-type=libmemcached --libmemcached-servers=127.0.0.1:11211
+gearman_queue_parameters: "--queue-type=builtin"

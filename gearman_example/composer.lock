@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "8c8eee0878b0852c6d5651b334b36d7f",
-    "content-hash": "601fb31c8d0d4504a213a0c837654da4",
+    "hash": "20b92cdd8871a95f2cd079715168f1a4",
+    "content-hash": "23a15f37b93c38f4395a9f13e5df8e36",
     "packages": [
         {
             "name": "aura/installer-default",
@@ -342,6 +342,63 @@
             ],
             "description": "A composer installer for CakePHP 3.0+ plugins.",
             "time": "2016-04-28 03:01:34"
+        },
+        {
+            "name": "cvo-technologies/cakephp-gearman",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/CVO-Technologies/cakephp-gearman.git",
+                "reference": "df1f5e4cafc662854c6070e9e0728d256e483fe2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/CVO-Technologies/cakephp-gearman/zipball/df1f5e4cafc662854c6070e9e0728d256e483fe2",
+                "reference": "df1f5e4cafc662854c6070e9e0728d256e483fe2",
+                "shasum": ""
+            },
+            "require": {
+                "cakephp/cakephp": "~3.2",
+                "ext-gearman": "*",
+                "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "cakephp/cakephp-codesniffer": "2.*",
+                "cakephp/debug_kit": "~3.2",
+                "phpunit/phpunit": "4.1.*"
+            },
+            "type": "cakephp-plugin",
+            "autoload": {
+                "psr-4": {
+                    "CvoTechnologies\\Gearman\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Wouter van Os",
+                    "homepage": "http://wouter0100.nl",
+                    "role": "Author"
+                },
+                {
+                    "name": "Marlin Cremers",
+                    "homepage": "https://cvo-technologies.com/",
+                    "role": "Author"
+                }
+            ],
+            "description": "A gearman plugin for CakePHP 3",
+            "homepage": "https://github.com/cvo-technologies/cakephp-gearman",
+            "keywords": [
+                "CVO-technologies",
+                "cakephp",
+                "gearman",
+                "jobs",
+                "workers"
+            ],
+            "time": "2016-03-13 21:20:00"
         },
         {
             "name": "mobiledetect/mobiledetectlib",

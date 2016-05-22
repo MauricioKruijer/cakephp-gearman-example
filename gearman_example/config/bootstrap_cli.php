@@ -29,6 +29,9 @@ use Cake\Core\Plugin;
 Configure::write('Log.debug.file', 'cli-debug');
 Configure::write('Log.error.file', 'cli-error');
 
+Plugin::load('CvoTechnologies/Gearman', ['bootstrap' => true]);
+
+
 try {
     Plugin::load('Bake');
 } catch (MissingPluginException $e) {
