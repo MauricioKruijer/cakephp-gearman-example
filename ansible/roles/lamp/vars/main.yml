@@ -3,7 +3,7 @@ lamp:
   admin_email: mail@example.org
   apache:
     port: 80
-    root: /var/www/
+    root: /var/www/html
     modules:
         - alias
         - auth_basic

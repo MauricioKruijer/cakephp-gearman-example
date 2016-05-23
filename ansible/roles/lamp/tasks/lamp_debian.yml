@@ -29,6 +29,7 @@
       - php5-memcache
       - php5-mysql
       - php5-gearman
+      - php5-imagick
       - php5-xsl
       - php-apc
       - php-pear
@@ -74,7 +75,7 @@
   action: template src=apache_php.ini.j2 dest=/etc/php5/apache2/php.ini owner=root group=root mode=0755
 
 - name: Configuration file for our site
-  action: template src=001-mysite.j2 dest=/etc/apache2/sites-available/001-mysite
+  action: template src=001-mysite.j2 dest=/etc/apache2/sites-available/001-mysite.conf
 
 - name: Grab PHP composer
   get_url: url=https://getcomposer.org/installer dest=/tmp/installer

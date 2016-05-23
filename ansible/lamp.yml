@@ -10,4 +10,11 @@
     - replace: dest=/etc/apache2/envvars regexp='export APACHE_RUN_USER=www-data' replace='export APACHE_RUN_USER=vagrant' backup=yes
     - replace: dest=/etc/apache2/envvars regexp='export APACHE_RUN_GROUP=www-data' replace='export APACHE_RUN_GROUP=vagrant' backup=yes
 
+    - name: a2ensite 001-mysite
+      command: a2ensite 001-mysite
+
+    - name: a2dissite 000-default
+      command: a2dissite 000-default
+      notify:
+        - restart apache2
 

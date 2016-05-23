@@ -12,8 +12,16 @@ class ProcessImageTask extends Shell
     {
         $job->sendStatus(0, 2);
 
-        echo $workload['file'];
+        $imagePath = $workload['file'];
+        $channel = Imagick::CHANNEL_DEFAULT;
 
+        $imagick = new \Imagick(realpath($imagePath));
+	    $imagick->addNoiseImage($noiseType, $channel);
+	    
+	    // header("Content-Type: image/jpg");
+	    
+	    file_put_contents($imagePath.'new', $imagick->getImageBlob());
+        
         $job->sendStatus(1, 2);
 
         return array(
