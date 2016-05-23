@@ -18,3 +18,5 @@
       notify:
         - restart apache2
 
+    # - cron: name="Start cake gearman workers" special_time=reboot job="/vagrant/gearman_example/bin/cake worker > /vagrant/gearman_example/logs/cake_worker.log"
+
