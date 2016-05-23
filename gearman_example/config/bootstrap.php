@@ -219,3 +219,16 @@ Type::build('date')
     ->useImmutable();
 Type::build('datetime')
     ->useImmutable();
+
+Plugin::load('CvoTechnologies/Gearman', ['bootstrap' => true]);
+
+Configure::write('Gearman.Jobs.emailWithWorker', [
+    'className' => 'CvoTechnologies/Gearman.Email',
+]);
+Configure::write('Gearman.Jobs.sleepWorker', [
+    'className' => 'Sleep',
+]);
+Configure::write('Gearman.Jobs.processImageWorker', [
+    'className' => 'ProcessImage',
+]);
+

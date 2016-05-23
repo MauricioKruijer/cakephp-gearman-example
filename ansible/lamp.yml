@@ -3,10 +3,20 @@
   become: true
   roles:
     - lamp
+    - gearman
   tasks:
     - file: path=/var/www/html state=absent
     - file: src=/vagrant/gearman_example/webroot/ dest=/var/www/html owner=vagrant group=vagrant state=link
     - replace: dest=/etc/apache2/envvars regexp='export APACHE_RUN_USER=www-data' replace='export APACHE_RUN_USER=vagrant' backup=yes
     - replace: dest=/etc/apache2/envvars regexp='export APACHE_RUN_GROUP=www-data' replace='export APACHE_RUN_GROUP=vagrant' backup=yes
 
+    - name: a2ensite 001-mysite
+      command: a2ensite 001-mysite
+
+    - name: a2dissite 000-default
+      command: a2dissite 000-default
+      notify:
+        - restart apache2
+
+    # - cron: name="Start cake gearman workers" special_time=reboot job="/vagrant/gearman_example/bin/cake worker > /vagrant/gearman_example/logs/cake_worker.log"
 

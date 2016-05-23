@@ -1,0 +1,8 @@
+---
+
+- name: "Restart gearman"
+  service:
+    name: "gearman-job-server"
+    state: "restarted"
+  become: "yes"
+  ignore_errors: yes

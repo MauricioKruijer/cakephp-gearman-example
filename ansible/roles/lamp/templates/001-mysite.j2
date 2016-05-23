@@ -2,7 +2,7 @@
 <VirtualHost *:80>
         ServerAdmin {{ lamp.admin_email }}
 
-        DocumentRoot /var/www
+        DocumentRoot {{ lamp.apache.root }}
         <Directory />
                 Options FollowSymLinks
                 AllowOverride All
@@ -10,9 +10,10 @@
         <Directory {{ lamp.apache.root }}>
                 Options Indexes FollowSymLinks MultiViews
                 AllowOverride All
-                Order allow,deny
-                allow from all
+                Order Allow,Deny
+                Allow from all
         </Directory>
+
 
         ScriptAlias /cgi-bin/ /usr/lib/cgi-bin/
         <Directory "/usr/lib/cgi-bin">

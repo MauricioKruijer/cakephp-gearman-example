@@ -73,4 +73,10 @@ Vagrant.configure(2) do |config|
   config.vm.provision "ansible" do |ansible|
     ansible.playbook = "ansible/lamp.yml"
   end
+
+  config.trigger.after :up do
+    run_remote "/vagrant/gearman_example/bin/cake worker > /vagrant/gearman_example/logs/cake_worker.log &"
+  end
+
+  #  config.trigger.after :up
 end
