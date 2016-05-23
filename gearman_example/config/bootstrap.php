@@ -232,3 +232,7 @@ Configure::write('Gearman.Jobs.processImageWorker', [
     'className' => 'ProcessImage',
 ]);
 
+Configure::write('Gearman.Jobs.reverseWorker', [
+    'className' => 'Reverse',
+]);
+
