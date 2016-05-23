@@ -4,6 +4,7 @@ namespace App\Shell\Task;
 use Cake\Console\Shell;
 use Cake\Core\Configure;
 use Psr\Log\LogLevel;
+use GearmanJob;
 
 class ProcessImageTask extends Shell
 {
