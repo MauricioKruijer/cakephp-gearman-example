@@ -18,5 +18,8 @@
       notify:
         - restart apache2
 
+    - copy: src=../my_app.sql dest=/tmp
+    - mysql_db: name=my_app state=import target=/tmp/my_app.sql
+
     # - cron: name="Start cake gearman workers" special_time=reboot job="/vagrant/gearman_example/bin/cake worker > /vagrant/gearman_example/logs/cake_worker.log"
 
